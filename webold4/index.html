@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tudatosharmonia.kft.hu</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: white;
+            background: linear-gradient(135deg, #a7f3d0 0%, #15803d 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        .container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .icons {
+            display: flex;
+            gap: 30px; 
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        a {
+            text-decoration: none;
+        }
+        .icon-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 130px;
+        }
+        .icon {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        .icon:hover {
+            transform: scale(1.1);
+        }
+        .icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .label {
+            margin-top: 12px;
+            font-size: 14px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+        }
+        /* LÁBRÉSZ (FOOTER) */
+        .footer {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        .footer h2 {
+            margin-bottom: 15px;
+            color: #a7f3d0;
+            font-size: 1.8rem;
+        }
+        .intro-text {
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            color: #f0fdf4;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        /* PPH GOMB */
+        .pph-button {
+            display: inline-block;
+            background-color: #a7f3d0;
+            color: #15803d;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .pph-button:hover {
+            background-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        .contact-info {
+            margin-top: 40px;
+            border-top: 1px dashed rgba(255,255,255,0.3);
+            padding-top: 30px;
+        }
+        .contact-link {
+            color: #a7f3d0;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        /* MOBIL NÉZET */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .intro-text { font-size: 15px; padding: 15px; }
+            .icon { width: 75px; height: 75px; }
+            .label { font-size: 13px; }
+            .pph-button { width: 90%; box-sizing: border-box; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Kövess minket!</h1>
+
+    <div class="icons">
+        <div class="icon-box">
+            <a href="https://www.facebook.com/profile.php?id=61586705157743" target="_blank">
+                <div class="icon"><img src="facebook.png" alt="A lelkek hídja"></div>
+                <div class="label">A lelkek hídja</div>
+            </a>
+        </div>
+        <div class="icon-box">
+            <a href="https://www.facebook.com/profile.php?id=61585896197949" target="_blank">
+                <div class="icon"><img src="facebook.png" alt="Fényspirál"></div>
+                <div class="label">Fényspirál</div>
+            </a>
+        </div>
+        <div class="icon-box">
+            <a href="https://www.facebook.com/ignaczne.faluhazi.katalin.pph" target="_blank">
+                <div class="icon"><img src="facebook.png" alt="Ignáczné Faluházi Katalin Pph"></div>
+                <div class="label">Ignáczné Faluházi Katalin Pph</div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <h2>Rólunk</h2>
+    <div class="intro-text">
+        <p>Üdvözlünk oldalunkon! Mi abban segítünk, hogy megtaláld a belső egyensúlyodat, 
+        és tudatosabban éld a mindennapjaidat. Szeretettel várunk minden kedves érdeklődőt 
+        a <strong>PPH és a Nyílt Akadémia</strong> minden vasárnap 16:30-kor, valamint szerdán 18:00-kor kezdődő, 
+        díjmentes tudatosságfejlesztő és üzleti bemutató előadására.</p>
+        
+        <p>A részvételi információkért kattints az alábbi linkre:</p>
+        
+        <a href="http://pph.hu/hu/?vez=141816" target="_blank" class="pph-button">PPH Részvételi Információk</a>
+    </div>
+
+    <div class="contact-info">
+        <h2>Elérhetőségek</h2>
+        
+        <p><strong>Ignáczné Faluházi Katalin:</strong><br>
+        Email: <a href="mailto:kata200304@gmail.com" class="contact-link">kata200304@gmail.com</a><br>
+        Telefon: <a href="tel:+36706165845" class="contact-link">06 70 616 5845</a></p>
+        
+        <br>
+        
+        <p><strong>Ignácz László:</strong><br>
+        Email: <a href="mailto:ignaczlaci73@gmail.com" class="contact-link">ignaczlaci73@gmail.com</a><br>
+        Telefon: <a href="tel:+36706018265" class="contact-link">06 70 601 8265</a></p>
+    </div>
+</div>
+
+</body>
+</html>
