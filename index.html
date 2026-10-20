@@ -7,7 +7,6 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
 
-        /* Finom, lágy gördülés a horgony-linkekhez */
         html {
             scroll-behavior: smooth;
         }
@@ -22,12 +21,6 @@
             background-attachment: fixed;
             min-height: 100vh;
             text-align: center;
-        }
-
-        /* Térköz a beugró horgonyoknak */
-        section {
-            scroll-margin-top: 110px;
-            margin-bottom: 60px;
         }
 
         .text-gradient, h1, h2, .label, .contact-card strong {
@@ -79,32 +72,6 @@
             transform: scale(1.05);
         }
 
-        /* --- KERESŐMEZŐ STÍLUS --- */
-        .search-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .search-input {
-            padding: 10px 16px;
-            border: 2px solid #059669;
-            border-radius: 12px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.3s ease;
-            width: 220px;
-            background-color: #f0fdf4;
-            color: #064e3b;
-        }
-
-        .search-input:focus {
-            border-color: #064e3b;
-            background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(5, 150, 105, 0.3);
-            width: 280px;
-        }
-
         /* --- BECSÚSZÓ MENÜ (SIDEBAR) --- */
         .sidebar-drawer {
             position: fixed;
@@ -152,70 +119,24 @@
             font-weight: 700;
         }
 
-        /* LENYÍLHATÓ KATEGÓRIÁK (HARMONIKA) */
-        .menu-accordion {
-            margin-bottom: 12px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            border: 1px solid rgba(167, 243, 208, 0.2);
-            overflow: hidden;
-            transition: background 0.3s ease;
-        }
-
-        .menu-accordion summary {
-            font-weight: 700;
-            font-size: 15px;
-            color: #a7f3d0;
-            cursor: pointer;
-            padding: 12px 15px;
-            outline: none;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            user-select: none;
-        }
-
-        .menu-accordion summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .menu-accordion summary::after {
-            content: "▼";
-            font-size: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .menu-accordion[open] summary::after {
-            transform: rotate(180deg);
-        }
-
-        .menu-accordion ul {
-            list-style: none;
-            padding: 5px 15px 15px 15px;
-            margin: 0;
-            background: rgba(0, 0, 0, 0.15);
-        }
-
-        .menu-accordion li {
-            margin-top: 8px;
-        }
-
-        .menu-accordion a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 14px;
+        .main-menu-item {
             display: block;
-            padding: 6px 10px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            font-weight: 600;
+            background: rgba(255, 255, 255, 0.1);
+            color: #a7f3d0;
+            font-weight: 700;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            text-decoration: none;
+            border: 1px solid rgba(167, 243, 208, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        .menu-accordion a:hover {
+        .main-menu-item:hover {
             background: #059669;
             color: #ffffff;
-            transform: translateX(4px);
+            transform: translateX(5px);
         }
 
         .overlay {
@@ -261,14 +182,45 @@
             color: #064e3b;
         }
 
-        .pph-button {
+        .pph-button, .back-btn {
             display: inline-block; background: #059669 !important; color: white !important;
-            padding: 18px 45px; border-radius: 15px; font-weight: 700;
-            text-decoration: none; margin-top: 35px; text-transform: uppercase;
-            transition: transform 0.3s ease;
+            padding: 15px 35px; border-radius: 15px; font-weight: 700;
+            text-decoration: none; margin-top: 25px; text-transform: uppercase;
+            transition: transform 0.3s ease; cursor: pointer; border: none;
             -webkit-text-fill-color: white !important;
         }
-        .pph-button:hover { transform: scale(1.1); }
+        .pph-button:hover, .back-btn:hover { transform: scale(1.05); }
+
+        /* KÁRTYA RÁCS (KATEGÓRIA OLDALAKHOZ) */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .sub-card {
+            background: white;
+            border: 3px solid #a7f3d0;
+            border-radius: 20px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+
+        .sub-card:hover {
+            transform: translateY(-5px);
+            border-color: #059669;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .sub-card h3 {
+            color: #064e3b;
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
 
         .contact-card-container { display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
         .contact-card {
@@ -289,43 +241,30 @@
 
         @media (max-width: 768px) {
             .navbar { padding: 15px; }
-            .search-input { width: 150px; }
-            .search-input:focus { width: 180px; }
             .sidebar-drawer { width: 290px; }
         }
     </style>
 </head>
 <body>
 
-<!-- OLDALRÓL BECSÚSZÓ MENÜSOR (MEGNYITHATÓ KATEGÓRIÁKKAL) -->
+<!-- OLDALRÓL BECSÚSZÓ MENÜSOR -->
 <aside class="sidebar-drawer" id="sidebarDrawer">
     <button class="close-btn" onclick="toggleMenu()">&times;</button>
     
     <div class="sidebar-section">
         <h3>Menüpontok</h3>
         
-        <!-- 1. FŐMENÜPONT (LENYÍLHATÓ) -->
-        <details class="menu-accordion">
-            <summary>Képzések és nyílt előadások</summary>
-            <ul>
-                <li><a href="#feloadasok" onclick="toggleMenu()">1. Nyílt előadások</a></li>
-                <li><a href="#feloadasok" onclick="toggleMenu()">2. Képzések</a></li>
-                <li><a href="#feloadasok" onclick="toggleMenu()">3. Szerda és vasárnap esti élő adások</a></li>
-                <li><a href="#feloadasok" onclick="toggleMenu()">4. Vasárnapi Szeminárium</a></li>
-            </ul>
-        </details>
+        <!-- KEZDŐLAP LINK -->
+        <a href="javascript:void(0)" class="main-menu-item" onclick="navigateTo('home')">🏠 Kezdőlap</a>
+        
+        <!-- 1. FŐMENÜPONT -->
+        <a href="javascript:void(0)" class="main-menu-item" onclick="navigateTo('kepzesek')">Képzések és nyílt előadások</a>
 
-        <!-- 2. FŐMENÜPONT (LENYÍLHATÓ) -->
-        <details class="menu-accordion">
-            <summary>Tapasztalatok</summary>
-            <ul>
-                <li><a href="#tapasztalatok" onclick="toggleMenu()">1. Közösségi Sikerek</a></li>
-                <li><a href="#tapasztalatok" onclick="toggleMenu()">2. Életmód Változások</a></li>
-                <li><a href="#tapasztalatok" onclick="toggleMenu()">3. Személyes Történetek</a></li>
-                <li><a href="#tapasztalatok" onclick="toggleMenu()">4. Lelki Fejlődés Útja</a></li>
-                <li><a href="#tapasztalatok" onclick="toggleMenu()">5. Egészség és Harmónia</a></li>
-            </ul>
-        </details>
+        <!-- 2. FŐMENÜPONT -->
+        <a href="javascript:void(0)" class="main-menu-item" onclick="navigateTo('tapasztalatok')">Tapasztalatok</a>
+
+        <!-- 3. FŐMENÜPONT -->
+        <a href="javascript:void(0)" class="main-menu-item" onclick="navigateTo('kereseti-lehetoseg')">Kereseti lehetőség</a>
     </div>
 </aside>
 
@@ -335,83 +274,13 @@
 <!-- FELSŐ MENÜSÁV -->
 <nav class="navbar">
     <button class="open-menu-btn" onclick="toggleMenu()">☰ Menü</button>
-
-    <!-- KERESŐ DOBOZ -->
-    <div class="search-container">
-        <input type="text" id="siteSearch" class="search-input" placeholder="🔍 Keresés..." onkeyup="searchPage()">
-    </div>
+    <a href="javascript:void(0)" onclick="navigateTo('home')" style="text-decoration:none;"><strong style="color:#064e3b; font-size:18px;">tudatosharmonia.kft.hu</strong></a>
 </nav>
 
-<div class="container">
-    <section id="kozoossegerol">
-        <h1>Kövess minket!</h1>
-        <div class="icons">
-            <a href="https://www.facebook.com/profile.php?id=61586705157743" target="_blank" class="icon-box searchable">
-                <div class="icon"><img src="facebook.png" alt="Facebook"></div>
-                <div class="label">A lelkek hídja</div>
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=61585896197949" target="_blank" class="icon-box searchable">
-                <div class="icon"><img src="facebook.png" alt="Facebook"></div>
-                <div class="label">Fényspirál</div>
-            </a>
-            <a href="https://www.facebook.com/ignaczne.faluhazi.katalin.pph" target="_blank" class="icon-box searchable">
-                <div class="icon"><img src="facebook.png" alt="Facebook"></div>
-                <div class="label">Ignáczné Faluházi Katalin Pph</div>
-            </a>
-        </div>
-    </section>
-</div>
-
-<div class="footer">
-    <section id="rolunk" class="searchable">
-        <h2>Rólunk</h2>
-        <div class="intro-text">
-            <p>Üdvözlünk az oldalunkon! Mi az Ignácz házaspár vagyunk, és már több mint két és fél éve büszke tagjai a PPH Nyílt Akadémia közösségének. Itt értettük meg, mit jelent a valódi szellemi és lelki fejlődés, és ez az út mutatott rá nekünk, hogyan tudunk mi is érdemben segíteni másoknak.</p>
-            <p>Szeretnél, ha te is átélhetnéd ezt a pozitív változást. Csatlakozz hozzánk, és örömmel támogatunk téged is a fejlődés útján!</p>
-        </div>
-    </section>
-
-    <section id="feloadasok" class="searchable">
-        <div class="content-block">
-            <h2>Előadások és ízelítők</h2>
-            <p>Szedlacsik Miklós rendszeresen közvetíti a nyilvános előadásokat, ahol aktuális témákról és fontos életterületekről beszél.<br>Emellett arra próbál rávilágítani, hogyan kéne éljék az emberek az életüket.<br>Nézd meg az ízelítő anyagokat a fentiekben csatolt Facebook profilokon vagy Szedlacsik Miklós YouTube csatornáján!</p>
-        </div>
-    </section>
-
-    <section id="tapasztalatok" class="searchable">
-        <div class="content-block">
-            <h2>Tapasztalataink</h2>
-            <p>A közösségben eltöltött évek során megtapasztaltuk, hogy itt valódi, folyamatos segítséget kapunk. Számos témában nyertünk mélyebb megértést, amely átsegített minket az élet nehézségein.</p>
-        </div>
-    </section>
-
-    <section id="regisztracio" class="searchable">
-        <div class="content-block" style="text-align: center;">
-            <h2>Regisztráció &amp; Csatlakozás</h2>
-            <p>A regisztráció megkezdéséhez kattints az alábbi gombra:<br>Fontos tudnod, hogy a regisztráció semmilyen kötelezettséggel nem jár.<br>Azért fontos, mert ha esetleg részt szeretnél venni akár most, akár később a havi díjas képzéseken, akkor a regisztráció egy ahhoz szükséges lépés.<br>Emellett kapsz egy saját bejelentkezéses online irodát, ahol szintén megtekinthetőek a nyílt előadások. Az email értesítés az előadások kezdetéről már csak hab a tortán.</p>
-            <a href="http://pph.hu/hu/?vez=141816" target="_blank" class="pph-button">PPH REGISZTRÁCIÓ</a>
-        </div>
-    </section>
-
-    <section id="kapcsolat" class="searchable">
-        <div class="content-block">
-            <h2>Kapcsolat</h2>
-            <p style="font-size: 1.17em; font-weight: bold; margin-top: 20px;">Ha bármilyen kérdésed van, keress minket bizalommal!<br>A fentiekben csatolt Facebook profilokon is elérsz minket üzenet vagy hívás, akár videóhívás formájában is.</p>
-            <div class="contact-card-container">
-                <div class="contact-card">
-                    <strong>Ignáczné Faluházi Katalin</strong>
-                    <a href="mailto:kata200304@gmail.com" class="contact-link">kata200304@gmail.com</a>
-                    <a href="tel:+36706165845" class="contact-link">06 70 616 5845</a>
-                </div>
-                <div class="contact-card">
-                    <strong>Ignácz László</strong>
-                    <a href="mailto:ignaczlaci73@gmail.com" class="contact-link">ignaczlaci73@gmail.com</a>
-                    <a href="tel:+36706018265" class="contact-link">06 70 601 8265</a>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
+<!-- DINAMIKUS TARTALOMTERÜLET -->
+<main id="appContent">
+    <!-- Alapértelmezetten a kezdőlap töltődik be JavaScriptből -->
+</main>
 
 <script>
     function toggleMenu() {
@@ -419,47 +288,232 @@
         document.getElementById('menuOverlay').classList.toggle('active');
     }
 
-    function searchPage() {
-        let query = document.getElementById('siteSearch').value.toLowerCase().trim();
-        
-        // 1. Keresés az oldal szekcióiban
-        let elements = document.querySelectorAll('.searchable');
-        elements.forEach(elem => {
-            let text = elem.innerText.toLowerCase();
-            if (query === '' || text.includes(query)) {
-                elem.style.display = '';
-            } else {
-                elem.style.display = 'none';
-            }
-        });
+    // AZ EGYES ALOLDALAK TARTALMA - TELJES EREDETI SZÖVEGEKKEL
+    const pages = {
+        // --- KEZDŐLAP (A teljes eredeti tartalom) ---
+        'home': `
+            <div class="container">
+                <section>
+                    <h1>Kövess minket!</h1>
+                    <div class="icons">
+                        <a href="https://www.facebook.com/profile.php?id=61586705157743" target="_blank" class="icon-box">
+                            <div class="icon"><img src="facebook.png" alt="Facebook"></div>
+                            <div class="label">A lelkek hídja</div>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61585896197949" target="_blank" class="icon-box">
+                            <div class="icon"><img src="facebook.png" alt="Facebook"></div>
+                            <div class="label">Fényspirál</div>
+                        </a>
+                        <a href="https://www.facebook.com/ignaczne.faluhazi.katalin.pph" target="_blank" class="icon-box">
+                            <div class="icon"><img src="facebook.png" alt="Facebook"></div>
+                            <div class="label">Ignáczné Faluházi Katalin Pph</div>
+                        </a>
+                    </div>
+                </section>
+            </div>
 
-        // 2. Keresés a menüpontok között
-        let accordions = document.querySelectorAll('.menu-accordion');
-        accordions.forEach(accordion => {
-            let items = accordion.querySelectorAll('li');
-            let hasMatch = false;
+            <div class="footer">
+                <section class="content-block" style="margin-bottom: 40px;">
+                    <h2>Rólunk</h2>
+                    <p>Üdvözlünk az oldalunkon! Mi az Ignácz házaspár vagyunk, és már több éve büszke tagjai a PPH Nyílt Akadémia közösségének. Itt értettük meg, mit jelent a valódi szellemi és lelki fejlődés, és ez az út mutatott rá nekünk, hogyan tudunk mi is érdemben segíteni másoknak.</p>
+                    <p>Szeretnél, ha te is átélhetnéd ezt a pozitív változást. Csatlakozz hozzánk, és örömmel támogatunk téged is a fejlődés útján!</p>
+                </section>
 
-            items.forEach(li => {
-                let text = li.innerText.toLowerCase();
-                if (query === '' || text.includes(query)) {
-                    li.style.display = '';
-                    hasMatch = true;
-                } else {
-                    li.style.display = 'none';
-                }
-            });
+                <section class="content-block" style="text-align: center; margin-bottom: 40px;">
+                    <h2>Regisztráció & Csatlakozás</h2>
+                    <p>A regisztráció megkezdéséhez kattints az alábbi gombra:<br>Fontos tudnod, hogy a regisztráció semmilyen kötelezettséggel nem jár.</p>
+                    <a href="http://pph.hu/hu/?vez=141816" target="_blank" class="pph-button">PPH REGISZTRÁCIÓ</a>
+                </section>
 
-            if (query !== '' && hasMatch) {
-                accordion.open = true;
-                accordion.style.display = '';
-            } else if (query !== '' && !hasMatch) {
-                accordion.style.display = 'none';
-            } else {
-                accordion.open = false;
-                accordion.style.display = '';
-            }
-        });
+                <section class="content-block">
+                    <h2>Kapcsolat</h2>
+                    <p style="font-size: 1.17em; font-weight: bold; margin-top: 20px;">Ha bármilyen kérdésed van, keress minket bizalommal telefonon!<br>Emellett a fent csatolt Facebook oldalakon és profilokon is elérsz minket.</p>
+                    <div class="contact-card-container">
+                        <div class="contact-card">
+                            <strong>Ignáczné Faluházi Katalin</strong>
+                            <a href="mailto:kata200304@gmail.com" class="contact-link">kata200304@gmail.com</a>
+                            <a href="tel:+36706165845" class="contact-link">06 70 616 5845</a>
+                        </div>
+                        <div class="contact-card">
+                            <strong>Ignácz László</strong>
+                            <a href="mailto:ignaczlaci73@gmail.com" class="contact-link">ignaczlaci73@gmail.com</a>
+                            <a href="tel:+36706018265" class="contact-link">06 70 601 8265</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        `,
+
+        // --- 1. FŐMENÜPONT: KÉPZÉSEK ÉS NYÍLT ELŐADÁSOK ---
+        'kepzesek': `
+            <div class="container" style="margin-top: 20px;">
+                <div class="content-block">
+                    <h2>Képzések és nyílt előadások</h2>
+                    <p>Válassz az alábbi témakörök közül a részletes leírás megtekintéséhez:</p>
+                    
+                    <div class="cards-grid">
+                        <div class="sub-card" onclick="navigateTo('kepzesek/nyilt')">
+                            <h3>Nyílt előadások</h3>
+                            <p>Kattints a részletes leírás elolvasásához.</p>
+                        </div>
+                        <div class="sub-card" onclick="navigateTo('kepzesek/kepzesek-reszletek')">
+                            <h3>Képzések</h3>
+                            <p>Kattints a részletes leírás elolvasásához.</p>
+                        </div>
+                        <div class="sub-card" onclick="navigateTo('kepzesek/szeminarium')">
+                            <h3>Vasárnapi Szeminárium</h3>
+                            <p>Kattints a részletes leírás elolvasásához.</p>
+                        </div>
+                    </div>
+
+                    <button class="back-btn" onclick="goBack()">← Vissza a főoldalra</button>
+                </div>
+            </div>
+        `,
+
+        'kepzesek/nyilt': `
+            <div class="container" style="margin-top: 20px;">
+                <div class="content-block">
+                    <h2>Nyílt előadások</h2>
+                    <p>Szedlacsik Miklós rendszeresen közvetíti a nyilvános előadásokat, ahol aktuális témákról és fontos életterületekről beszél.</p>
+                    <p>Emellett arra próbál rávilágítani, hogyan kéne éljék az emberek az életüket. Nézd meg az ízelítő anyagokat a csatolt Facebook profilokon vagy Szedlacsik Miklós YouTube csatornáján!</p>
+                    <p><b>Mikor vannak az előadások?</b><br>Minden szerdán 18:00-kor és minden vasárnap 16:30-kor kezdődő, díjmentes tudatosságfejlesztő és üzleti bemutató előadásra várunk szeretettel minden kedves érdeklődőt.<br>A regisztrált emberek az előadásokról emlékeztető értesítést kapnak emailben.</p>
+                    <button class="back-btn" onclick="goBack()">← Vissza</button>
+                </div>
+            </div>
+        `,
+        'kepzesek/kepzesek-reszletek': `
+            <div class="container" style="margin-top: 20px;">
+                <div class="content-block">
+                    <h2>Képzések</h2>
+                    <p>A képzések a nyílt előadások után következnek: ha az ízelítő alapján úgy érzed, hogy szeretnél mélyebben megismerni a tanításokat, a képzések adják meg ehhez a következő lépést.</p>
+                    <p>A részvételhez egy csekély havi összeg befizetése szükséges, amelynél értékben sokkal több tudást kapsz cserébe.</p>
+                    <button class="back-btn" onclick="goBack()">← Vissza</button>
+                </div>
+            </div>
+        `,
+        'kepzesek/szeminarium': `
+            <div class="container" style="margin-top: 20px;">
+                <div class="content-block">
+                    <h2>Vasárnapi Szeminárium</h2>
+                    <p>Havonta egy alkalommal kerül megrendezésre a Vasárnapi Szeminárium, ahol egy képzést élőben tekinthetsz meg.</p>
+
+                    <p>A szeminárium nemcsak a tanulásról szól, hanem a találkozásról is: megismerkedhetsz olyan emberekkel, akik hasonlóan gondolkodnak, mint te. És ha nem is gondolkodtok teljesen ugyanúgy, akkor is tudjátok egymást segíteni, és ajánlani egymásnak hasznos dolgokat. Kiváló alkalom arra, hogy kiszakadj a hétköznapokból, és egy támogató közösség tagjaként fejlődj tovább.</p>
+                    <button class="back-btn" onclick="goBack()">← Vissza</button>
+                </div>
+            </div>
+        `,
+
+        // --- 2. FŐMENÜPONT: TAPASZTALATOK ---
+        'tapasztalatok': `
+            <div class="container" style="margin-top: 20px;">
+                <div class="content-block">
+                    <h2>Tapasztalatok</h2>
+                    <p>Válassz az alábbi tapasztalatok közül a részletes leírás megtekintéséhez:</p>
+
+                    <div class="cards-grid">
+                        <div class="sub-card" onclick="navigateTo('tapasztalatok/kozosseg')">
+                            <h3>Tapasztalataink a közösséggel</h3>
+                            <p>Kattints a részletes leírás elolvasásához.</p>
+                        </div>
+                        <div class="sub-card" onclick="navigateTo('tapasztalatok/valtozas')">
+                            <h3>Saját magunk változása</h3>
+                            <p>Kattints a részletes leírás elolvasásához.</p>
+                        </div>
+                    </div>
+
+                    <button class="back-btn" onclick="goBack()">← Vissza a főoldalra</button>
+                </div>
+            </div>
+        `,
+
+        'tapasztalatok/kozosseg': `
+            <div class="container" style="margin-top: 20px;">
+                <div class="content-block">
+                    <h2>Tapasztalataink a közösséggel</h2>
+                    <p>Már több éve vagyunk a PPH Nyílt Akadémia közösségének tagjai. Ez idő alatt egy támogató, őszinte és segítőkész közeget ismertünk meg, ahol az emberek egymás fejlődését is a szívükön viselik.</p>
+                    <p>A közösség ereje abban rejlik, hogy nem vagy egyedül: a közös alkalmak, az élő adások és a beszélgetések során mindig találsz valakit, aki segít, vagy akitől tanulhatsz.</p>
+                    <button class="back-btn" onclick="goBack()">← Vissza</button>
+                </div>
+            </div>
+        `,
+        'tapasztalatok/valtozas': `
+            <div class="container" style="margin-top: 20px;">
+                <div class="content-block">
+                    <h2>Saját magunk változása</h2>
+                    <p>A tanultak gyakorlása közben mi magunk is sokat változtunk. Tudatosabban kezeljük az élethelyzeteinket, és jobban megértjük a bennünk és körülöttünk zajló folyamatokat.</p>
+                    <p>Ez az út mutatta meg nekünk, mit jelent a valódi szellemi és lelki fejlődés, és ennek köszönhetően tudunk mi is érdemben segíteni másoknak.</p>
+                    <button class="back-btn" onclick="goBack()">← Vissza</button>
+                </div>
+            </div>
+        `,
+
+        // --- 3. FŐMENÜPONT: KERESETI LEHETŐSÉG ---
+        'kereseti-lehetoseg': `
+            <div class="container" style="margin-top: 20px;">
+                <div class="content-block">
+                    <h2>Hogyan kereshetsz pénzt mások segítésével?</h2>
+                    <p>A PPH Nyílt Akadémia nemcsak szellemi és lelki fejlődési lehetőséget biztosít, hanem egy egyedülálló, tisztességes kereseti modellt is kínál azok számára, akik szívesen segítenek másoknak a fejlődés útjára lépni.</p>
+                    <p>A közösségépítéssel és a képzések ajánlásával egy olyan független jövedelemforrást építhetsz ki, amely biztonságot és anyagi függetlenséget nyújthat a mindennapokban.</p>
+                    <button class="back-btn" onclick="goBack()">← Vissza a főoldalra</button>
+                </div>
+            </div>
+        `
+    };
+
+    // NAVIGÁCIÓS LOGIKA (HISTORY API)
+    let currentRoute = 'home';
+
+    function navigateTo(route) {
+        document.getElementById('sidebarDrawer').classList.remove('active');
+        document.getElementById('menuOverlay').classList.remove('active');
+
+        renderPage(route);
+
+        try {
+            history.pushState({ route: route }, '', `#${route}`);
+        } catch (e) { /* a böngésző nem engedi, de az oldal így is működik */ }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // VISSZA GOMB: mindig egy szinttel feljebb lép (almenü -> főmenü -> főoldal)
+    function goBack() {
+        let parent = 'home';
+        if (currentRoute.indexOf('/') !== -1) {
+            parent = currentRoute.substring(0, currentRoute.lastIndexOf('/'));
+        }
+        navigateTo(parent);
+    }
+
+    function renderPage(route) {
+        const contentArea = document.getElementById('appContent');
+        if (pages[route]) {
+            contentArea.innerHTML = pages[route];
+            currentRoute = route;
+        } else {
+            contentArea.innerHTML = pages['home'];
+            currentRoute = 'home';
+        }
+    }
+
+    // BÖNGÉSZŐ VISSZA / ELŐRE GOMBJÁNAK KEZELÉSE
+    window.addEventListener('popstate', (event) => {
+        if (event.state && event.state.route) {
+            renderPage(event.state.route);
+        } else {
+            renderPage('home');
+        }
+    });
+
+    // KEZDŐ BETÖLTÉS
+    window.addEventListener('DOMContentLoaded', () => {
+        const initialRoute = location.hash.replace('#', '');
+        if (initialRoute && pages[initialRoute]) {
+            renderPage(initialRoute);
+        } else {
+            renderPage('home');
+        }
+    });
 </script>
 
 </body>
